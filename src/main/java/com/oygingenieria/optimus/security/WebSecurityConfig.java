@@ -38,8 +38,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
 				// Las vistas públicas no requieren autenticación
 					.permitAll()
 				// Todas las demás URLs de la Aplicación requieren autenticación
-				//.anyRequest()
-					//.authenticated()
+				.anyRequest()
+					.authenticated()
 				.and()
 					// El Formulario de Login no requiere autenticación
 					.formLogin()
