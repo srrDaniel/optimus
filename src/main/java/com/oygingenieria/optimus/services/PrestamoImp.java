@@ -96,7 +96,7 @@ public class PrestamoImp implements IPrestamo
 		Prestamo prestamoModificar = prestamoDao.findById(prestamo.getId()).orElse(null);
 		if(prestamoModificar != null) 
 		{			
-			var estado = (prestamoModificar.getEstado().equals("Activo")) ? "Inactivo":"Activo";
+			String estado = (prestamoModificar.getEstado().equals("Activo")) ? "Inactivo":"Activo";
 			prestamoModificar.setEstado(estado);		
 		}	
 	}
