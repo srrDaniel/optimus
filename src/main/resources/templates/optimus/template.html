@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+	<title>Template | Optimus Soft</title>
+
+	<!-- General CSS Files -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/modules/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/modules/fontawesome/css/all.min.css}">
+	<link rel="icon" type="image/png" th:href="@{/dashboard/dist/assets/img/Favicon.png}">
+
+	<!-- CSS Libraries -->
+
+	<!-- Template CSS -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/style.css}">
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/components.css}">
+</head>
+
+<body>
+	<div id="app">
+		<div class="main-wrapper main-wrapper-1">
+			<div class="navbar-bg"></div>
+			<!--Topbar -->
+			<nav th:fragment="topbar" class="navbar navbar-expand-lg main-navbar">
+				<ul class="navbar-nav mr-3">
+					<li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a>
+					</li>
+				</ul>
+				<ul class="navbar-nav ml-auto">
+					<li class="dropdown"><a href="#" data-toggle="dropdown"
+							class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+							<img alt="image" th:src="@{/dashboard/dist/assets/img/avatar/avatar-1.png}"
+								class="rounded-circle mr-1">
+							<div class="d-sm-none d-lg-inline-block">
+								<span sec:authentication="name"></span>
+							</div>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right">
+							<form th:action="@{/logout}" method="post">
+								<button class="dropdown-item text-danger" type="submit">
+									Cerrar sesión
+								</button>
+							</form>
+						</div>
+					</li>
+				</ul>
+			</nav>
+			<!-- Sidebar -->
+			<div th:fragment="sidebar" class="main-sidebar sidebar-style-2">
+				<aside id="sidebar-wrapper">
+					<div class="sidebar-brand">
+						<a th:href="@{/optimus/}">Optimus Soft</a>
+					</div>
+					<div class="sidebar-brand sidebar-brand-sm">
+						<a th:href="@{/optimus/}">OS</a>
+					</div>
+					<ul class="sidebar-menu">
+						<li class="menu-header">Dashboard</li>
+						<li>
+							<a class="nav-link" th:href="@{/optimus/}">
+								<i class="fas fa-fire"></i>
+								<span>Dashboard</span></a>
+						</li>
+						<li class="menu-header">Módulos</li>
+						<li>
+							<a class="nav-link" th:href="@{/optimus/usuarios/}">
+								<i class="fas fa-user-cog"></i>
+								<span>Usuarios</span></a>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+								<i class="fas fa-receipt"></i>
+								<span>Comprobantes</span></a>
+							<ul class="dropdown-menu">
+								<li><a class="nav-link" th:href="@{/optimus/comprobantes/}">Comprobantes</a></li>
+								<li><a class="nav-link" th:href="@{/optimus/comprobantesEmpleado/}">Comprobantes
+										empleado</a>
+								</li>
+								<li><a class="nav-link" th:href="@{/optimus/comprobantesProveedor/}">Comprobantes
+										proveedor</a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="nav-link" th:href="@{/optimus/empleados/}">
+								<i class="fas fa-users"></i>
+								<span>Empleados</span></a>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="nav-link has-dropdown">
+								<i class="fas fa-toolbox"></i>
+								<span>Herramientas</span></a>
+							<ul class="dropdown-menu">
+								<li><a class="nav-link" th:href="@{/optimus/herramientas/}">Herramientas</a></li>
+								<li><a class="nav-link" th:href="@{/optimus/prestamos/}">Préstamos</a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="nav-link" th:href="@{/optimus/materiales/}">
+								<i class="fas fa-hammer"></i>
+								<span>Materiales</span></a>
+						</li>
+						<li>
+							<a class="nav-link" th:href="@{/optimus/proveedores/}">
+								<i class="fas fa-people-carry"></i>
+								<span>Proveedores</span></a>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="nav-link has-dropdown">
+								<i class="fas fa-fighter-jet"></i>
+								<span>Ayuda en linea</span></a>
+							<ul class="dropdown-menu">
+								<li><a class="nav-link" href="https://youtu.be/Dqi82HBT9o4" target="_blank">Usuarios</a></li>
+								<li><a class="nav-link" href="https://youtu.be/kKgzx3NbfOs" target="_blank">Comprobantes</a></li>
+								<li><a class="nav-link" href="https://youtu.be/qlfimRiiFTI" target="_blank">Empleados</a></li>
+								<li><a class="nav-link" href="https://youtu.be/u8nlPc-CWkA" target="_blank">Herramientas</a></li>
+								<li><a class="nav-link" href="https://youtu.be/qb1hmObk_0w" target="_blank">Materiales</a></li>
+								<li><a class="nav-link" href="https://youtu.be/kF-zOmpwGGU" target="_blank">Proveedores</a></li>
+							</ul>
+						</li>
+					</ul>
+				</aside>
+			</div>
+			<!-- End of Sidebar -->
+			<!-- Main Content -->
+			<div class="main-content">
+				<section class="section">
+					<div class="section-header">
+						<h1>Template</h1>
+					</div>
+
+					<div class="section-body">
+					</div>
+				</section>
+			</div>
+			<!-- End of Main Content -->
+			<!-- Footer -->
+			<footer th:fragment="footer" class="main-footer">
+				<div class="footer-left">
+						
+				</div>
+				<div class="footer-right">
+
+				</div>
+			</footer>
+			<!-- End of Footer -->
+		</div>
+	</div>
+	<!-- Modals -->
+	<nav th:fragment="modals">
+	</nav>
+	<!-- End of Modals -->
+	<!-- Scripts -->
+	<nav th:fragment="scripts">
+		<!-- General JS Scripts -->
+		<script th:src="@{/dashboard/dist/assets/modules/jquery.min.js}"></script>
+		<script th:src="@{/dashboard/dist/assets/modules/popper.js}"></script>
+		<script th:src="@{/dashboard/dist/assets/modules/tooltip.js}"></script>
+		<script th:src="@{/dashboard/dist/assets/modules/bootstrap/js/bootstrap.min.js}"></script>
+		<script th:src="@{/dashboard/dist/assets/modules/nicescroll/jquery.nicescroll.min.js}"></script>
+		<script th:src="@{/dashboard/dist/assets/modules/moment.min.js}"></script>
+		<script th:src="@{/dashboard/dist/assets/js/stisla.js}"></script>
+
+		<!-- JS Libraries -->
+
+		<!-- Page Specific JS File -->
+
+		<!-- Template JS File -->
+		<script th:src="@{/dashboard/dist/assets/js/scripts.js}"></script>
+		<script th:src="@{/dashboard/dist/assets/js/custom.js}"></script>
+	</nav>
+
+
+	<!-- End of Scripts -->
+</body>
+
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  lang="es">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link  th:href="@{https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap}" rel="stylesheet">
+
+    <title>O&amp;G Ingeniería</title>
+	<link rel="icon" type="image/png" th:href="@{/landing/images/Favicon.png}">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" th:href="@{/landing/css/bootstrap.min.css}">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/landing/css/font-awesome.css}">
+
+    <link rel="stylesheet" th:href="@{/landing/css/templatemo-hexashop.css}">
+
+    <link rel="stylesheet" th:href="@{/landing/css/owl-carousel.css}">
+
+    <link rel="stylesheet" th:href="@{/landing/css/lightbox.css}">
+<!--
+
+TemplateMo 571 Hexashop
+
+https://templatemo.com/tm-571-hexashop
+
+-->
+    </head>
+    
+    <body>
+    
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+    
+    
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <a th:href="@{/}" class="logo">
+                            <img th:src="@{/landing/images/LogoOYG.png}">
+                        </a>
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a th:href="@{/}" >Inicio</a></li>
+                            <li class="submenu">
+                                <a href="javascript:;">Nosotros</a>
+                                <ul>
+                                    <li><a href="#about-us">Quiénes Somos</a></li>
+                                    <li><a href="#about-us">Visión</a></li>
+                                    <li><a href="#about-us">Ofrecemos</a></li>
+                                </ul>
+                            </li>
+                            <li class="submenu">
+                                <a href="javascript:;">Servicios</a>
+                                <ul>
+                                    <li><a href="#energy">Energía</a></li>
+                                    <li><a href="#telecom">Telecomunicaciones</a></li>
+                                    </ul>
+                            </li>
+                            <li class="scroll-to-section"><a href="#contact-us">Contacto</a></li>
+                            <li class="scroll-to-section"><a th:href="@{/auth/login}">Intranet</a></li>
+                        </ul>        
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="page-heading about-page-heading" id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-content">
+                        <h2>O & G Ingeniería</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+    <!-- ***** About Us Starts ***** -->
+    <section class="about-us" id="about-us">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-heading">
+                        <h2>Nosotros</h2>
+
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="about-item">
+                        <h4>Quiénes Somos</h4>
+                        <p>Somos una empresa dedicada a brindar soluciones en redes eléctricas de alta, media y baja
+                            tensión, para empresas industriales, comerciales y de construcción a nivel nacional.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="about-item">
+                        <h4>Visión</h4>
+                        <p>Para el año 2018 ser uno de los principales líderes en brindar soluciones consistentes para 
+                            nuestro mercado objetivo, con una oferta de valor basada en servicios eficientes, confiables
+                            y adaptados a cada necesidad.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="about-item">
+                        <h4>Ofrecemos</h4>
+                        <ul>
+                            <li>Asesoría</li>
+                            <li>Diseño</li>
+                            <li>Instalación</li>
+                            <li>Interventorias</li>
+                            <li>Construcción de proyectos de redes eléctricas</li>
+                            <li>Asistencia posventa</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** About Us Ends ***** -->
+
+    <!-- ***** Services Area Starts ***** -->
+    <section class="section" id="energy">
+    <div class="about-us">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="left-image">
+                        <img th:src="@{/landing/images/electrico.jpg}" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="right-content">
+                        <h4>Energía</h4>
+                        <ul>
+                            <li>Diseño y construcción redes exteriores de energía.</li>
+                            <li>Diseño y construcción en subestaciones en media y alta tensión.</li>
+                            <li>Diseño y mantenimiento de redes de distribución de energía aérea a 
+                                13200, 34500, 44000 voltios.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    <!-- ***** Services Area Ends ***** -->
+
+    <!-- ***** Services Area Starts ***** -->
+    <section class="section" id="telecom">
+    <div class="about-us">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="right-content">
+                        <h4>Telecomunicaciones</h4>
+                        <ul>
+                            <li>Cableado estructurado.</li>
+                            <li>Organizadores horizontales y verticales.</li>
+                            <li>Marcación del sistema.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="left-image">
+                        <img th:src="@{/landing/images/cable.jpg}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    <!-- ***** Services Area Ends ***** -->
+
+	<!-- ***** Contact Area Starts ***** -->
+    <section class="section" id="contact-us">
+    <div class="contact-us">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div id="map"> 
+                    <iframe th:src="@{https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d5009.364700814479!2d-75.60450966992379!3d6.240333808783072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2sco!4v1655305145186!5m2!1ses!2sco}" width="100%" height="400px" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    <!-- You can simply copy and paste "Embed a map" code from Google Maps for any location. -->
+                    
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="section-heading">
+                        <h2>Contáctenos</h2>      
+                    </div>
+                    <form id="contact" action="" method="post">
+                        <div class="row">
+                        <div class="col-lg-6">
+                            <fieldset>
+                            <input name="name" type="text" id="name" placeholder="Nombre" required="">
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-6">
+                            <fieldset>
+                            <input name="email" type="text" id="email" placeholder="Correo electrónico" required="">
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                            <textarea name="message" rows="6" id="message" placeholder="Mensaje" required=""></textarea>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset>
+                            <button type="submit" id="form-submit" class="main-dark-button"><i class="fa fa-paper-plane"></i></button>
+                        </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    <!-- ***** Contact Area Ends ***** -->
+
+    <!-- ***** Footer Start ***** -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="first-item">
+                        <div class="logo">
+                            <img th:src="@{/landing/images/LogoOYG_Dark.png}" alt="O&G Ingeniería">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <h4>Portafolio</h4>
+                    <ul>
+                        <li>Ingeniería Eléctrica.</li>
+                        <li>Aires acondicionados.</li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h4>Contáctenos</h4>
+                    <ul>
+                        <li>264 54 80</li>
+                        <li>301 480 9239</li>
+                        <li>300 784 0247</li>
+                    </ul>
+                </div>
+                <div class="col-lg-12">
+                    <div class="under-footer">
+                        <p>Copyright © 2022 O&G INGENIERÍA. Todos los derechos reservados.                         
+                        <br>Design: <a href="https://templatemo.com" target="_parent" title="free css templates">TemplateMo</a>
+                        <br>Distributed By: <a href="https://themewagon.com" target="_blank" title="free & premium responsive templates">ThemeWagon</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+
+    <!-- jQuery -->
+    <script th:src="@{/landing/js/jquery-2.1.0.min.js}"></script>
+
+    <!-- Bootstrap -->
+    <script th:src="@{/landing/js/popper.js}"></script>
+    <script th:src="@{/landing/js/bootstrap.min.js}"></script>
+
+    <!-- Plugins -->
+    <script th:src="@{/landing/js/owl-carousel.js}"></script>
+    <script th:src="@{/landing/js/accordions.js}"></script>
+    <script th:src="@{/landing/js/datepicker.js}"></script>
+    <script th:src="@{/landing/js/scrollreveal.min.js}"></script>
+    <script th:src="@{/landing/js/waypoints.min.js}"></script>
+    <script th:src="@{/landing/js/jquery.counterup.min.js}"></script>
+    <script th:src="@{/landing/js/imgfix.min.js}"></script> 
+    <script th:src="@{/landing/js/slick.js}"></script> 
+    <script th:src="@{/landing/js/lightbox.js}"></script> 
+    <script th:src="@{/landing/js/isotope.js}"></script> 
+    
+    <!-- Global Init -->
+    <script th:src="@{/landing/js/custom.js}"></script>
+
+    <script>
+
+        $(function() {
+            var selectedClass = "";
+            $("p").click(function(){
+            selectedClass = $(this).attr("data-rel");
+            $("#portfolio").fadeTo(50, 0.1);
+                $("#portfolio div").not("."+selectedClass).fadeOut();
+            setTimeout(function() {
+              $("."+selectedClass).fadeIn();
+              $("#portfolio").fadeTo(50, 1);
+            }, 500);
+                
+            });
+        });
+
+    </script>
+
+  </body>
+
+</html>

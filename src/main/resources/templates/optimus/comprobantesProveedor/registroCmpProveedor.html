@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+	<title>Comprobantes | Optimus Soft</title>
+
+	<!-- General CSS Files -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/modules/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/modules/fontawesome/css/all.min.css}">
+	<link rel="icon" type="image/png" th:href="@{/dashboard/dist/assets/img/Favicon.png}">
+
+	<!-- CSS Libraries -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/formsvalidation.css}">
+
+	<!-- Template CSS -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/style.css}">
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/components.css}">
+</head>
+
+<body>
+	<div id="app">
+		<div class="main-wrapper main-wrapper-1">
+			<div class="navbar-bg"></div>
+
+			<!-- TopBar -->
+			<nav th:replace="optimus/template :: topbar"></nav>
+
+			<!-- SideBar -->
+			<div th:replace="optimus/template :: sidebar"></div>
+
+			<!-- Main Content -->
+			<div class="main-content">
+				<section class="section">
+					<div class="section-header">
+						<div class="section-header-back">
+							<a th:href="@{/optimus/comprobantesProveedor/}" class="btn btn-icon"><i
+									class="fas fa-arrow-left"></i></a>
+						</div>
+						<h1>Comprobante proveedor</h1>
+						<div class="section-header-breadcrumb">
+							<div class="breadcrumb-item active"><a th:href="@{/optimus/}">Dashboard</a></div>
+							<div class="breadcrumb-item"><a th:href="@{/optimus/comprobantesProveedor/}">Comprobante
+									proveedor</a></div>
+							<div class="breadcrumb-item">Detalle</div>
+						</div>
+					</div>
+					<!-- Alerts -->
+					<div th:classappend="'alert-'+(${clase!=null} ? ${clase} : info)" th:if="${mensaje != null}"
+						class="alert alert-dismissible fade show" role="alert">
+						<strong th:text="${mensaje}"></strong>
+						<button title="close" type="button" class="close" data-dismiss="alert" aria-label="Close"
+							aria-hidden="true">x</button>
+					</div>
+					<div class="section-body">
+						<div class="row">
+							<div class="col-12">
+								<div class="card shadow">
+									<div class="card-header">
+										<h4></h4>
+									</div>
+									<div class="card-body">
+										<form th:object="${comprobanteProveedor}"
+											th:action="@{/optimus/comprobantesProveedor/guardar}" method="post"
+											class="needs-validation" novalidate="">
+											<div class="card border border-primary mb-3">
+												<div class="card-header">
+													<strong>Información de proveedor</strong>
+												</div>
+												<div class="row card-body">
+													<div class="form-group col-6">
+														<input type="hidden" name="id" th:field="*{id}" />
+														<label for="" class="is-required">Nombre proveedor</label>
+														<select id="slt_proveedores" class="form-control"
+															th:field="*{proveedor}" onchange="colocar_nit()">
+															<option value="">Seleccione</option>
+															<option th:each="p : ${proveedores}"
+																th:value="${p.idProveedor}" th:text="${p.nombreProveedor}">
+															</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="card border border-success mb-3">
+												<div class="card-header">
+													<strong>Información de comprobantes</strong>
+												</div>
+												<div class="row card-body">
+													<div class="col-6">
+														<div class="form-group">
+															<label for="" class="is-required">Nº Factura</label>
+															<select name="comprobantes" id="comprobantes"
+																class="form-control" th:field="*{comprobante}">
+																<option value="">Seleccione</option>
+																<option th:each="comprobante : ${comprobantes}"
+																	concepto="${comprobante.conceptoComprobante}" 
+																	th:value="${comprobante.idComprobante}"
+																	th:text="${comprobante.nFacturaComprobante}">
+																</option>
+															</select>
+															</select>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="card-footer text-right">
+												<button class="btn btn-primary" type="submit">Guardar</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- Footer -->
+			<footer th:replace="optimus/template :: footer"></footer>
+		</div>
+	</div>
+
+	<!-- Modals -->
+	<nav th:insert="optimus/template :: modals"></nav>
+
+	<!-- Scripts -->
+	<nav th:insert="optimus/template :: scripts"></nav>
+</body>
+
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+	<title>Empleados | Optimus Soft</title>
+
+	<!-- General CSS Files -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/modules/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/modules/fontawesome/css/all.min.css}">
+	<link rel="icon" type="image/png" th:href="@{/dashboard/dist/assets/img/Favicon.png}">
+
+	<!-- CSS Libraries -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/formsvalidation.css}">
+
+	<!-- Template CSS -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/style.css}">
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/components.css}">
+</head>
+
+<body>
+	<div id="app">
+		<div class="main-wrapper main-wrapper-1">
+			<div class="navbar-bg"></div>
+
+			<!-- TopBar -->
+			<nav th:replace="optimus/template :: topbar"></nav>
+
+			<!-- SideBar -->
+			<div th:replace="optimus/template :: sidebar"></div>
+
+			<!-- Main Content -->
+			<div class="main-content">
+				<section class="section">
+					<div class="section-header">
+						<div class="section-header-back">
+							<a th:href="@{/optimus/empleados/}" class="btn btn-icon"><i
+									class="fas fa-arrow-left"></i></a>
+						</div>
+						<h1>Empleado</h1>
+						<div class="section-header-breadcrumb">
+							<div class="breadcrumb-item active"><a th:href="@{/optimus/}">Dashboard</a></div>
+							<div class="breadcrumb-item"><a th:href="@{/optimus/empleados/}">Empleados</a></div>
+							<div class="breadcrumb-item">Nuevo</div>
+						</div>
+					</div>
+					<!-- Alerts -->
+					<div th:classappend="'alert-'+(${clase!=null} ? ${clase} : info)" th:if="${mensaje != null}"
+						class="alert alert-dismissible fade show" role="alert">
+						<strong th:text="${mensaje}"></strong>
+						<button title="close" type="button" class="close" data-dismiss="alert" aria-label="Close"
+							aria-hidden="true">x</button>
+					</div>
+					<div class="section-body">
+						<div class="row">
+							<div class="col-12">
+								<div class="card shadow">
+									<div class="card-header">
+										<h4></h4>
+									</div>
+									<div class="card-body">
+										<form th:object="${empleado}" th:action="${empleado.idEmpleado != null} ? @{/optimus/empleados/actualizar} : @{/optimus/empleados/guardar}"
+											method="post" class="needs-validation" novalidate="">
+											<div class="row">
+												<input type="hidden" name="idEmpleado" th:field="*{idEmpleado}" />
+												<input type="hidden" name="estadoEmpleado" th:field="*{estadoEmpleado}" />
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_TipoDocumento" class="is-required">Tipo de documento</label>
+													<select name="sl_TipoDocumento" th:field="*{tipoDocumentoEmpleado}"
+														id="sl_TipoDocumento" class="custom-select form-control"
+														autofocus required>
+														<option selected value="0" disabled>Elige una opción</option>
+														<optgroup label="Tipo de documento">
+															<option value="Cédula de ciudadanía">CC</option>
+															<option value="Tarjeta de identidad">TI</option>
+															<option value="Pasaporte">PAP</option>
+															<option value="Cédula de extranjería">CE</option>
+														</optgroup>
+													</select>
+													<div class="invalid-feedback">
+														Seleccione un tipo de documento.
+													</div>
+												</div>
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_Documento" class="is-required">Documento</label>
+													<input type="text" th:field="*{documentoEmpleado}"
+														class="form-control" id="txt_Documento" maxlength="15" required>
+													<div class="invalid-feedback">
+														Ingrese un número de documento de identidad válida.
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_nombreEmpleado" class="is-required">Nombre</label>
+													<input th:field="*{nombreEmpleado}" type="text" class="form-control"
+														id="txt_nombreEmpleado" name="txt_nombreEmpleado" minlength="3"
+														maxlength="30" pattern="[Aa-Zz]" required>
+													<div class="invalid-feedback">
+														Ingrese el nombre correctamente.
+													</div>
+												</div>
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_ApellidoEmpleado" class="is-required">Apellido</label>
+													<input th:field="*{apellidoEmpleado}" type="text"
+														class="form-control" id="txt_ApellidoEmpleado"
+														name="txt_ApellidoEmpleado" maxlength="30" pattern="[Aa-Zz]"
+														required>
+													<div class="invalid-feedback">
+														Ingrese un apellido válido.
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="form-group col-md-4 col-12">
+													<label for="lb_EdadEmpleado" class="is-required">Edad</label>
+													<input th:field="*{edadEmpleado}" type="number" class="form-control"
+														id="EdadEmpleado" name="EdadEmpleado" max="80" min="18"
+														required>
+													<div class="invalid-feedback">
+														Ingrese una edad válida.
+													</div>
+												</div>
+												<div class="form-group col-md-4 col-12">
+													<label for="lb_Salario" class="is-required">Salario</label>
+													<input th:field="*{salarioEmpleado}" type="number"
+														class="form-control" id="salarioEmpleado" name="salarioEmpleado"
+														min="0" max="20000000" required>
+													<div class="invalid-feedback">
+														Ingrese un salario válido.
+													</div>
+												</div>
+												<div class="form-group col-md-4 col-12">
+													<label for="lb_Salario" class="is-required">Teléfono</label>
+													<input th:field="*{telefonoEmpleado}" type="tel"
+														class="form-control" id="telefonoEmpleado"
+														name="telefonoEmpleado" 
+														pattern="[0-9]{10}" required>
+													<div class="invalid-feedback">
+														Ingrese un teléfono válido.
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_correoEmpleado" class="is-required">Correo electrónico</label>
+													<input th:field="*{correoEmpleado}" type="email"
+														class="form-control" id="txt_correoEmpleado"
+														name="txt_correoEmpleado" maxlength="100" required>
+													<div class="invalid-feedback">
+														Ingrese un correo electrónico válido.
+													</div>
+												</div>
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_direccionEmpleado" class="is-required">Dirección</label>
+													<input th:field="*{direccionEmpleado}" type="text"
+														class="form-control" id="txt_direccionEmpleado"
+														name="txt_direccionEmpleado" minlength="4" maxlength="100"
+														required>
+													<div class="invalid-feedback">
+														Ingrese una dirección válida.
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_epsEmpleado" class="is-required">EPS</label>
+													<select name="sl_epsEmpleado" th:field="*{epsEmpleado}"
+														id="sl_epsEmpleado"
+														class="custom-select form-control form-control-user" required>
+														<optgroup label="Elige una Eps">
+															<option selected value="0" disabled>Elige una opción
+															</option>
+															<option value="EPS Sura">EPS Sura</option>
+															<option value="Coomeva">Coomeva</option>
+															<option value="Nueva EPS">Nueva EPS</option>
+															<option value="Medimás">Medimás</option>
+															<option value="Salud Total">Salud Total</option>
+															<option value="EPS Sanitas">EPS Sanitas</option>
+															<option value="Famisanar">Famisanar</option>
+															<option value="Audifarma">Audifarma</option>
+															<option value="Copidroga">Copidroga</option>
+															<option value="Coosalud">Coosalud</option>
+														</optgroup>
+													</select>
+													<div class="invalid-feedback">
+														Seleccione una opción válida.
+													</div>
+												</div>
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_arlEmpleado" class="is-required">ARL</label>
+													<select name="arlEmpleado" th:field="*{arlEmpleado}"
+														id="arlEmpleado" class="form-control form-control-user"
+														required>
+														<optgroup label="Elige una Arl">
+															<option selected value="0" disabled>Elige una opción
+															</option>
+															<option value="Sura">Sura</option>
+															<option value="Positva">Positva</option>
+															<option value="Axa Colpatria">Axa Colpatria</option>
+															<option value="Colmena">Colmena</option>
+															<option value="Seguros Bolivar">Seguros Bolivar</option>
+															<option value="Equidad Seguros">Equidad Seguros</option>
+															<option value="Seguros Alfa">Seguros Alfa</option>
+															<option value="Aurora s.a">Aurora s.a</option>
+															<option value="Liberty Seguros">Liberty Seguros</option>
+														</optgroup>
+													</select>
+													<div class="invalid-feedback">
+														Seleccione una opción válida.
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_fechaIngresoEmpleado" class="is-required">Fecha de ingreso</label>
+													<input th:field="*{fechaIngresoEmpleado}" type="date"
+														class="form-control" id="fechaIngresoEmpleado"
+														name="fechaIngresoEmpleado" min="1900-01-01" max="2200-12-31"
+														required>
+													<div class="invalid-feedback">
+														Ingresa una fecha de ingreso a la empresa válida.
+													</div>
+												</div>
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_vencimientoCursoAltura" class="is-required">Vencimiento curso de
+														altura</label>
+													<input th:field="*{vencimientoCursoAltura}" type="date"
+														class="form-control" id="vencimientoCursoAltura"
+														name="vencimientoCursoAltura" min="1900-01-01" max="2200-12-31"
+														required>
+													<div class="invalid-feedback">
+														Ingresa una fecha de vencimiento del curso de altura válida.
+													</div>
+												</div>
+											</div>
+											<div class="card-footer text-right">
+												<button class="btn btn-primary" type="submit">Guardar</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- Footer -->
+			<footer th:replace="optimus/template :: footer"></footer>
+		</div>
+	</div>
+
+	<!-- Modals -->
+	<nav th:insert="optimus/template :: modals"></nav>
+
+	<!-- Scripts -->
+	<nav th:insert="optimus/template :: scripts"></nav>
+</body>
+
+</html>

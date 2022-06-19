@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+	<title>Préstamos | Optimus Soft</title>
+
+	<!-- General CSS Files -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/modules/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/modules/fontawesome/css/all.min.css}">
+	<link rel="icon" type="image/png" th:href="@{/dashboard/dist/assets/img/Favicon.png}">
+
+	<!-- CSS Libraries -->
+	<link rel="stylesheet" type="text/css"
+		th:href="@{/dashboard/dist/assets/modules/datatables/DataTables-1.12.1/css/jquery.dataTables.css}" />
+	<link rel="stylesheet" type="text/css"
+		th:href="@{/dashboard/dist/assets/modules/datatables/Responsive-2.3.0/css/responsive.dataTables.css}" />
+	<link rel="stylesheet" type="text/css"
+		th:href="@{/dashboard/dist/assets/modules/datatables/Select-1.4.0/css/select.dataTables.css}" />
+		
+	<!-- Template CSS -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/style.css}">
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/components.css}">
+</head>
+
+<body>
+	<div id="app">
+		<div class="main-wrapper main-wrapper-1">
+			<div class="navbar-bg"></div>
+
+			<!-- TopBar -->
+			<nav th:replace="optimus/template :: topbar"></nav>
+
+			<!-- SideBar -->
+			<div th:replace="optimus/template :: sidebar"></div>
+
+			<!-- Main Content -->
+			<div class="main-content">
+				<section class="section">
+					<div class="section-header">
+						<h1>Préstamos</h1>
+						<div class="section-header-button">
+							<a th:href="@{/optimus/prestamos/agregar}" class="btn btn-icon icon-left btn-primary">
+								<i class="fas fa-plus"></i>
+								<span class="text">Asignar préstamo</span>
+							</a>
+						</div>
+						<div class="section-header-breadcrumb">
+							<div class="breadcrumb-item active"><a th:href="@{/optimus/}">Dashboard</a></div>
+							<div class="breadcrumb-item">Préstamos</div>
+						</div>
+					</div>
+					<!-- Alerts -->
+					<div th:classappend="'alert-'+(${clase!=null} ? ${clase} : info)" th:if="${mensaje != null}"
+						class="alert alert-dismissible fade show" role="alert">
+						<strong th:text="${mensaje}"></strong>
+						<button title="close" type="button" class="close" data-dismiss="alert" aria-label="Close"
+							aria-hidden="true">x</button>
+					</div>
+					<div class="section-body">
+						<div class="row mt-4">
+							<div class="col-12">
+								<div class="card shadow mb-4">
+									<div class="card-body" th:if="${prestamos != null and !prestamos.empty}">
+										<div class="table-responsive">
+											<table class="table table-striped" id="dataTables">
+												<thead>
+													<tr>
+														<th>Nombre</th>
+														<th>Apellido</th>
+														<th>Herramienta</th>
+														<th>Cantidad</th>
+														<th>Fecha préstamo</th>
+														<!--<th>Estado</th>!-->
+														<th>Acciones</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr th:each="prestamo : ${prestamos}">
+														<td th:text="${prestamo.empleado.nombreEmpleado}"></td>
+														<td th:text="${prestamo.empleado.apellidoEmpleado}"></td>
+														<td th:text="${prestamo.herramienta.nombreHerramienta}"></td>
+														<td th:text="${prestamo.cantidad_herramientas}"></td>
+														<td th:text="${prestamo.fechaPrestamo}"></td>
+														<!--<td>
+															<div th:if="${prestamo.estado=='Activo'}">
+																<a th:href="@{/optimus/prestamos/estado(id=${prestamo.id})}"
+																	class="btn btn-icon icon-left btn-success btn-sm">
+																	<i class="fas fa-toggle-on"></i>
+																	<span class="text"
+																		th:text="${prestamo.estado}"></span>
+																</a>
+															</div>
+															<div th:unless="${prestamo.estado=='Activo'}">
+																<a th:href="@{/optimus/prestamos/estado(id=${prestamo.id})}"
+																	class="btn btn-icon icon-left btn-secondary btn-sm">
+																	<i class="fas fa-toggle-off"></i>
+																	<span class="text"
+																		th:text="${prestamo.estado}"></span>
+																</a>
+															</div>
+														</td>!-->
+														<td>
+															<a th:href="@{/optimus/prestamos/detalle(id=${prestamo.id})}"
+																class="btn btn-icon btn-info">
+																<i class="fas fa-info-circle"></i></a>
+															<a th:href="@{/optimus/prestamos/editar(id=${prestamo.id})}"
+																class="btn btn-icon btn-success">
+																<i class="fas fa-edit"></i></a>
+															<a th:href="@{/optimus/prestamos/eliminar(id=${prestamo.id})}"
+																class="btn btn-icon btn-danger">
+																<i class="fas fa-trash"></i></a>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div class="card-body" th:if="${prestamos == null or prestamos.empty}">
+										No se ha asignado ningún préstamo.
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- Footer -->
+			<footer th:replace="optimus/template :: footer"></footer>
+		</div>
+	</div>
+
+	<!-- Modals -->
+	<nav th:insert="optimus/template :: modals"></nav>
+
+	<!-- Scripts -->
+	<nav th:insert="optimus/template :: scripts"></nav>
+	<script>
+		$(document).ready(function () {
+			$('#dataTables').DataTable({
+				language: {
+					url: '/dashboard/dist/assets/modules/datatables/es-ES.json'
+				}
+			});
+		});
+	</script>
+	
+	<!-- JS Libraries -->
+	<script type="text/javascript" th:src="@{/dashboard/dist/assets/modules/datatables/DataTables-1.12.1/js/jquery.dataTables.js}"></script>
+	<script type="text/javascript" th:src="@{/dashboard/dist/assets/modules/datatables/Responsive-2.3.0/js/dataTables.responsive.js}"></script>
+	<script type="text/javascript" th:src="@{/dashboard/dist/assets/modules/datatables/Select-1.4.0/js/dataTables.select.js}"></script>
+	
+	<!-- Page Specific JS File -->
+	<script th:src="@{/dashboard/dist/assets/js/page/modules-datatables.js}"></script>
+
+</body>
+
+</html>

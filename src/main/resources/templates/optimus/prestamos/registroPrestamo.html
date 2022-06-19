@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+	<title>Préstamos | Optimus Soft</title>
+
+	<!-- General CSS Files -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/modules/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/modules/fontawesome/css/all.min.css}">
+	<link rel="icon" type="image/png" th:href="@{/dashboard/dist/assets/img/Favicon.png}">
+
+	<!-- CSS Libraries -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/formsvalidation.css}">
+
+	<!-- Template CSS -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/style.css}">
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/components.css}">
+</head>
+
+<body>
+	<div id="app">
+		<div class="main-wrapper main-wrapper-1">
+			<div class="navbar-bg"></div>
+
+			<!-- TopBar -->
+			<nav th:replace="optimus/template :: topbar"></nav>
+
+			<!-- SideBar -->
+			<div th:replace="optimus/template :: sidebar"></div>
+
+			<!-- Main Content -->
+			<div class="main-content">
+				<section class="section">
+					<div class="section-header">
+						<div class="section-header-back">
+							<a th:href="@{/optimus/prestamos/}" class="btn btn-icon"><i
+									class="fas fa-arrow-left"></i></a>
+						</div>
+						<h1>Préstamos</h1>
+						<div class="section-header-breadcrumb">
+							<div class="breadcrumb-item active"><a th:href="@{/optimus/}">Dashboard</a></div>
+							<div class="breadcrumb-item"><a th:href="@{/optimus/prestamos/}">Préstamos</a></div>
+							<div class="breadcrumb-item">Nuevo</div>
+						</div>
+					</div>
+
+					<!-- Alerts -->
+					<div th:classappend="'alert-'+(${clase!=null} ? ${clase} : info)" th:if="${mensaje != null}"
+						class="alert alert-dismissible fade show" role="alert">
+						<strong th:text="${mensaje}"></strong>
+						<button title="close" type="button" class="close" data-dismiss="alert" aria-label="Close"
+							aria-hidden="true">x</button>
+					</div>
+					<div class="section-body">
+						<div class="row">
+							<div class="col-12">
+								<div class="card shadow">
+									<div class="card-header">
+										<h4></h4>
+									</div>
+									<div class="card-body">
+										<form th:object="${prestamo}" th:action="@{/optimus/prestamos/guardar}"
+											method="post" class="needs-validation" novalidate="">
+											<div class="card border border-primary mb-3">
+												<div class="card-header">
+													<strong>Información de empleado</strong>
+												</div>
+												<div class="row card-body">
+													<div class="form-group col-6">
+														<input type="hidden" name="id" th:field="*{id}" />
+														<label for="" class="is-required">Empleado</label>
+														
+														<!--Cambiamos 'name' y 'id' por nombres, antes estaba documentos-->
+														
+														<select name="nombres" id="nombres" class="form-control"
+															th:field="*{empleado}">
+															<option value="">Seleccione</option>
+															<option th:each="e : ${empleados}"
+																th:value="${e.id}"
+																th:text="${e.nombreCompleto}">
+															</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="card border border-success mb-3">
+												<div class="card-header">
+													<strong>Información de herramientas</strong>
+												</div>
+												<div class="row card-body">
+													<div class="col-6">
+														<div class="form-group">
+															<label for="" class="is-required">Herramienta</label>
+															<select name="herramientas" id="herramientas"
+																class="form-control" th:field="*{herramienta}">
+																<option value="">Seleccione</option>
+																<option th:each="h : ${herramientas}"
+																	th:value="${h.idHerramienta}"
+																	th:text="${h.nombreHerramienta}"></option>
+															</select>
+															</select>
+														</div>
+													</div>
+													<div class="col-6">
+														<div class="form-group">
+															<label for="" class="is-required">Cantidad</label>
+															<input type="number" id="cantidad_herramientas"
+																class="form-control"
+																th:field="*{cantidad_herramientas}">
+														</div>
+													</div>													
+												</div>
+											</div>
+											<div class="card-footer text-right">
+												<button class="btn btn-primary" type="submit">Guardar</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- Footer -->
+			<footer th:replace="optimus/template :: footer"></footer>
+		</div>
+	</div>
+
+	<!-- Modals -->
+	<nav th:insert="optimus/template :: modals"></nav>
+
+	<!-- Scripts -->
+	<nav th:insert="optimus/template :: scripts"></nav>
+
+</body>
+
+</html>

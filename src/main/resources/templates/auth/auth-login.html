@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+	<title>Login | Optimus Soft</title>
+
+	<!-- General CSS Files -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/modules/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/modules/fontawesome/css/all.min.css}">
+	<link rel="icon" type="image/png" th:href="@{/dashboard/dist/assets/img/Favicon.png}">
+
+	<!-- CSS Libraries -->
+
+	<!-- Template CSS -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/style.css}">
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/components.css}">
+</head>
+
+<body>
+	<div id="app">
+		<section class="section">
+			<div class="container mt-5">
+				<div class="row">
+					<div
+						class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+						<div class="login-brand">
+							<a th:href="@{/}" class="logo">
+								<img class="mb-4" th:src="@{/landing/images/LogoOptimus.png}" alt="Logo">
+							</a>
+						</div>
+						
+						<!-- Alerts -->
+						<div th:classappend="'alert-'+(${clase!=null} ? ${clase} : info)" th:if="${mensaje != null}"
+							class="alert alert-dismissible fade show" role="alert">
+							<strong th:text="${mensaje}"></strong>
+							<button title="close" type="button" class="close" data-dismiss="alert" aria-label="Close"
+								aria-hidden="true">x</button>
+						</div>
+
+						<div class="card card-primary">
+							<div class="card-header">
+								<h4>Inicio de sesión</h4>
+							</div>
+
+							<div class="card-body">
+								<form method="POST" class="needs-validation" novalidate="" th:action="@{/auth/login}">
+									<div class="form-group">
+										<label for="username">Usuario</label>
+										<input id="username" type="text" class="form-control" name="username" tabindex="1"
+											required autofocus>
+										<div class="invalid-feedback">
+											Por favor, introduzca un nombre de usuario válido
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="d-block">
+											<label for="password" class="control-label">Contraseña</label>
+											<div class="float-right">
+												<a th:href="@{/auth/forgot-password}" class="text-small">
+													¿Olvidaste tu contraseña?
+												</a>
+											</div>
+										</div>
+										<input id="password" type="password" class="form-control" name="password"
+											tabindex="2" required>
+										<div class="invalid-feedback">
+											Por favor, introduzca su contraseña
+										</div>
+									</div>
+									<div class="form-group">
+										<button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="3">
+											Ingresar
+										</button>
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="mt-5 text-muted text-center">
+							<a  th:href="@{/}">Regresar al inicio</a>
+						</div>
+						<div class="simple-footer">
+							Todos los derechos reservados &copy; 2022
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- Scripts -->
+	<nav th:insert="optimus/template :: scripts"></nav>
+</body>
+
+</html>

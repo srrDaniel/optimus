@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+	<title>Usuarios | Optimus Soft</title>
+
+	<!-- General CSS Files -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/modules/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/modules/fontawesome/css/all.min.css}">
+	<link rel="icon" type="image/png" th:href="@{/dashboard/dist/assets/img/Favicon.png}">
+
+	<!-- CSS Libraries -->
+
+	<!-- Template CSS -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/style.css}">
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/components.css}">
+</head>
+
+<body>
+	<div id="app">
+		<div class="main-wrapper main-wrapper-1">
+			<div class="navbar-bg"></div>
+
+			<!-- TopBar -->
+			<nav th:replace="optimus/template :: topbar"></nav>
+
+			<!-- SideBar -->
+			<div th:replace="optimus/template :: sidebar"></div>
+
+			<!-- Main Content -->
+			<div class="main-content">
+				<section class="section">
+					<div class="section-header">
+						<div class="section-header-back">
+							<a th:href="@{/optimus/usuarios/}" class="btn btn-icon"><i
+									class="fas fa-arrow-left"></i></a>
+						</div>
+						<h1>Detalle usuario</h1>
+						<div class="section-header-breadcrumb">
+							<div class="breadcrumb-item active"><a th:href="@{/optimus/}">Dashboard</a></div>
+							<div class="breadcrumb-item"><a th:href="@{/optimus/usuarios/}">Usuarios</a></div>
+							<div class="breadcrumb-item">Detalle</div>
+						</div>
+					</div>
+
+					<div class="section-body">
+						<div class="invoice shadow">
+							<div class="invoice-print">
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="invoice-title">
+											<h2>[[${usuario.nombreUsuario}]]</h2>
+										</div>
+										<hr>
+										<div class="row">
+											<div class="col-md-6">
+												<strong>Correo electrónico</strong><br>
+												[[${usuario.correoUsuario}]]<br><br>
+											</div>
+											<div class="col-md-6">
+												<strong>Estado</strong><br>
+												[[${usuario.estadoUsuario}]]<br><br>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- Footer -->
+			<footer th:replace="optimus/template :: footer"></footer>
+		</div>
+	</div>
+
+	<!-- Modals -->
+	<nav th:insert="optimus/template :: modals"></nav>
+
+	<!-- Scripts -->
+	<nav th:insert="optimus/template :: scripts"></nav>
+</body>
+
+</html>

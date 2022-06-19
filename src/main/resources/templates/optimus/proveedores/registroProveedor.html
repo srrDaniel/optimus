@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+	<title>Proveedores | Optimus Soft</title>
+
+	<!-- General CSS Files -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/modules/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/modules/fontawesome/css/all.min.css}">
+	<link rel="icon" type="image/png" th:href="@{/dashboard/dist/assets/img/Favicon.png}">
+
+	<!-- CSS Libraries -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/formsvalidation.css}">
+
+	<!-- Template CSS -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/style.css}">
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/components.css}">
+</head>
+
+<body>
+	<div id="app">
+		<div class="main-wrapper main-wrapper-1">
+			<div class="navbar-bg"></div>
+
+			<!-- TopBar -->
+			<nav th:replace="optimus/template :: topbar"></nav>
+
+			<!-- SideBar -->
+			<div th:replace="optimus/template :: sidebar"></div>
+
+			<!-- Main Content -->
+			<div class="main-content">
+				<section class="section">
+					<div class="section-header">
+						<div class="section-header-back">
+							<a th:href="@{/optimus/proveedores/}" class="btn btn-icon"><i
+									class="fas fa-arrow-left"></i></a>
+						</div>
+						<h1>Proveedor</h1>
+						<div class="section-header-breadcrumb">
+							<div class="breadcrumb-item active"><a th:href="@{/optimus/}">Dashboard</a></div>
+							<div class="breadcrumb-item"><a th:href="@{/optimus/proveedores/}">Proveedores</a></div>
+							<div class="breadcrumb-item">Nuevo</div>
+						</div>
+					</div>
+					<!-- Alerts -->
+					<div th:classappend="'alert-'+(${clase!=null} ? ${clase} : info)" th:if="${mensaje != null}"
+						class="alert alert-dismissible fade show" role="alert">
+						<strong th:text="${mensaje}"></strong>
+						<button title="close" type="button" class="close" data-dismiss="alert" aria-label="Close"
+							aria-hidden="true">x</button>
+					</div>
+					<div class="section-body">
+						<div class="row">
+							<div class="col-12">
+								<div class="card shadow">
+									<div class="card-header">
+										<h4></h4>
+									</div>
+									<div class="card-body">
+										<form th:object="${proveedor}" th:action="${proveedor.idProveedor != null} ? @{/optimus/proveedores/actualizar} : @{/optimus/proveedores/guardar}"
+											method="post" class="needs-validation" novalidate="">
+											<div class="row">
+												<input type="hidden" name="idProveedor" th:field="*{idProveedor}" />
+												<input type="hidden" name="estadoProveedor" th:field="*{estadoProveedor}" />
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_nitProveedor" class="is-required">NIT</label>
+													<input th:field="*{nitProveedor}" type="text" class="form-control"
+														id="txt_nitProveedor" name="txt_nitProveedor" maxlength="50"
+														autofocus required>
+													<div class="invalid-feedback">
+														Ingrese un NIT válido.
+													</div>
+												</div>
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_nombreProveedor" class="is-required">Nombre</label>
+													<input th:field="*{nombreProveedor}" type="text"
+														class="form-control" id="txt_nombreProveedor"
+														name="txt_nombreProveedor" maxlength="50" required>
+													<div class="invalid-feedback">
+														Ingrese un nombre de proveedor válido.
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_telefonoProveedor" class="is-required">Teléfono</label>
+													<input th:field="*{telefonoProveedor}" type="tel"
+														class="form-control" id="txt_telefonoProveedor"
+														name="txt_telefonoProveedor"
+														pattern="[0-9]{10}" required>
+													<div class="invalid-feedback">
+														Ingrese un teléfono válido.
+													</div>
+												</div>
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_correoProveedor" class="is-required">Correo Electrónico</label>
+													<input th:field="*{correoProveedor}" type="email"
+														class="form-control" id="txt_correoProveedor"
+														name="txt_correoProveedor" maxlength="100" required>
+													<div class="invalid-feedback">
+														Ingrese un correo electrónico válido.
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_direccionProveedor" class="is-required">Dirección</label>
+													<input th:field="*{direccionProveedor}" type="text"
+														class="form-control" id="txt_direccionProveedor"
+														name="txt_direccionProveedor" maxlength="100" required>
+													<div class="invalid-feedback">
+														Ingrese una dirección válida.
+													</div>
+												</div>
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_contactoProveedor" class="is-required">Contacto</label>
+													<input th:field="*{contactoProveedor}" type="text"
+														class="form-control" id="txt_contactoProveedor"
+														name="txt_contactoProveedor" maxlength="100" required>
+													<div class="invalid-feedback">
+														Ingrese un nombre de contacto válido.
+													</div>
+												</div>
+											</div>
+											<div class="card-footer text-right">
+												<button class="btn btn-primary" type="submit">Guardar</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- Footer -->
+			<footer th:replace="optimus/template :: footer"></footer>
+		</div>
+	</div>
+
+	<!-- Modals -->
+	<nav th:insert="optimus/template :: modals"></nav>
+
+	<!-- Scripts -->
+	<nav th:insert="optimus/template :: scripts"></nav>
+</body>
+
+</html>

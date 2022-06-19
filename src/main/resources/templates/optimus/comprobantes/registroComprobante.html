@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+	<title>Comprobantes | Optimus Soft</title>
+
+	<!-- General CSS Files -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/modules/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/modules/fontawesome/css/all.min.css}">
+	<link rel="icon" type="image/png" th:href="@{/dashboard/dist/assets/img/Favicon.png}">
+
+	<!-- CSS Libraries -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/formsvalidation.css}">
+
+	<!-- Template CSS -->
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/style.css}">
+	<link rel="stylesheet" th:href="@{/dashboard/dist/assets/css/components.css}">
+</head>
+
+<body>
+	<div id="app">
+		<div class="main-wrapper main-wrapper-1">
+			<div class="navbar-bg"></div>
+
+			<!-- TopBar -->
+			<nav th:replace="optimus/template :: topbar"></nav>
+
+			<!-- SideBar -->
+			<div th:replace="optimus/template :: sidebar"></div>
+
+			<!-- Main Content -->
+			<div class="main-content">
+				<section class="section">
+					<div class="section-header">
+						<div class="section-header-back">
+							<a th:href="@{/optimus/comprobantes/}" class="btn btn-icon"><i
+									class="fas fa-arrow-left"></i></a>
+						</div>
+						<h1>Comprobante</h1>
+						<div class="section-header-breadcrumb">
+							<div class="breadcrumb-item active"><a th:href="@{/optimus/}">Dashboard</a></div>
+							<div class="breadcrumb-item"><a th:href="@{/optimus/comprobantes/}">Comprobantes</a></div>
+							<div class="breadcrumb-item">Nuevo</div>
+						</div>
+					</div>
+					<!-- Alerts -->
+					<div th:classappend="'alert-'+(${clase!=null} ? ${clase} : info)" th:if="${mensaje != null}"
+						class="alert alert-dismissible fade show" role="alert">
+						<strong th:text="${mensaje}"></strong>
+						<button title="close" type="button" class="close" data-dismiss="alert" aria-label="Close"
+							aria-hidden="true">x</button>
+					</div>
+					<div class="section-body">
+						<div class="row">
+							<div class="col-12">
+								<div class="card shadow">
+									<div class="card-header">
+										<h4></h4>
+									</div>
+									<div class="card-body">
+										<form th:object="${comprobante}" th:action="${comprobante.idComprobante != null} ? @{/optimus/comprobantes/actualizar} : @{/optimus/comprobantes/guardar}"
+											method="post" class="needs-validation" novalidate="">
+											<div class="row">
+												<input type="hidden" name="idComprobante" th:field="*{idComprobante}" />
+												<input type="hidden" name="estadoComprobante" th:field="*{estadoComprobante}" />
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_nFacturaComprobante" class="is-required">										
+													N° Factura</label> 
+													
+													<input th:field="*{nFacturaComprobante}" type="number"
+														class="form-control" id="nFacturaComprobante"
+														name="nFacturaComprobante" min="0" max="1000000" autofocus
+														required>
+													<div class="invalid-feedback">
+														Ingresa el número de factura correctamente.
+													</div>
+												</div>
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_ciudadComprobante" class="is-required">Ciudad</label>
+													<select name="ciudadComprobante" th:field="*{ciudadComprobante}"
+														id="ciudadComprobante"
+														class="custom-select form-control form-control-user" required>
+														<optgroup label="Elige una ciudad">
+															<option selected value="0" disabled>Elige una opción
+															</option>
+															<option value="Medellin">Medellin</option>
+															<option value="Bello">Bello</option>
+															<option value="Itagui">Itagui</option>
+															<option value="Envigado">Envigado</option>
+															<option value="Caldas">Caldas</option>
+															<option value="Sabaneta">Sabaneta</option>
+															<option value="Copacabana">Copacabana</option>
+															<option value="Girardota">Girardota</option>
+															<option value="Barbosa">Barbosa</option>
+															<option value="La Estrella">La Estrella</option>
+															<option value="Guarne">Guarne</option>
+															<option value="Río Negro">Río Negro</option>
+															<option value="La Ceja">La Ceja</option>
+															<option value="Llano Grande">Llano Grande</option>
+															<option value="Bogotá">Bogotá</option>
+															<option value="Cali">Cali</option>
+															<option value="Manizales">Manizales</option>
+															<option value="Huila">Huila</option>
+															<option value="Ibagué">Ibagué</option>
+															<option value="Cartagena">Cartagena</option>
+															<option value="Santa Marta">Santa Marta</option>
+															<option value="La Guajira">La Guajira</option>
+															<option value="Cucuta">Cucuta</option>
+															<option value="Barranquilla">Barranquilla</option>
+															<option value="Otro">Otro</option>
+														</optgroup>
+													</select>
+													<div class="invalid-feedback">
+														Selecciona una ciudad.
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_tipoComprobante" class="is-required">Tipo de comprobante</label>
+													<select name="sl_tipoComprobante" th:field="*{tipoComprobante}"
+														id="sl_tipoComprobante" class="custom-select form-control"
+														required>
+														<optgroup label="Tipo de comprobante">
+															<option selected value="0" disabled>Elige una opción
+															</option>
+															<option value="Egreso">Egreso</option>
+															<option value="Ingreso">Ingreso</option>
+														</optgroup>
+													</select>
+													<div class="invalid-feedback">
+														Ingresa un tipo de comprobante correctamente.
+													</div>
+												</div>
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_numeroComprobante" class="is-required">Número de comprobante</label>
+													<input th:field="*{numeroComprobante}" type="number"
+														class="form-control" id="numeroComprobante"
+														name="numeroComprobante" min="0" max="1000000" required />
+													<div class="invalid-feedback">
+														Ingresa un número de comprobante válido.
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_tipoPagoComprobante" class="is-required">Tipo de pago</label>
+													<select name="sl_tipoPagoComprobante"
+														th:field="*{tipoPagoComprobante}" id="sl_tipoPagoComprobante"
+														class="custom-select form-control" required>
+														<optgroup label="Tipo de pago">
+															<option selected value="0" disabled>Elige una opción
+															</option>
+															<option value="Efectivo">Efectivo</option>
+															<option value="Cheque">Cheque</option>
+															<option value="Transferencia">Transferencia</option>
+															<option value="Tarjeta">Tarjeta Débito/Crédito</option>
+														</optgroup>
+													</select>
+													<div class="invalid-feedback">
+														Ingresa un tipo de pago correctamente.
+													</div>
+												</div>
+											
+											</div>
+											<div class="row">
+												<div class="form-group col-md-12 col-12">
+													<label for="lb_conceptoComprobante" class="is-required">Concepto</label>
+													<textarea th:field="*{conceptoComprobante}" class="form-control"
+														id="conceptoComprobante" name="conceptoComprobante"
+														maxlength="255" rows="3" required />
+													<div class="invalid-feedback">
+														Ingresa el concepto.
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												
+											
+											</div>
+											<div class="row">
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_porcentajeIvaComprobante" class="is-required">Porcentaje IVA</label>
+													<input th:field="*{porcentajeIvaComprobante}" type="number"
+														class="form-control" id="porcentajeIvaComprobante"
+														name="porcentajeIvaComprobante" min="0" max="100" required />
+													<div class="invalid-feedback">
+														Ingresa un porcentaje de IVA correcto.
+													</div>
+												</div>
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_ivaComprobante" class="is-required">IVA</label>
+													<input th:field="*{ivaComprobante}" type="number"
+														class="form-control" id="ivaComprobante" name="ivaComprobante"
+														min="0" max="200000000" required />
+													<div class="invalid-feedback">
+														Ingresa un valor de IVA correcto.
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_porcentajeRetencionComprobante" class="is-required">Porcentaje
+														Retención</label>
+													<input th:field="*{porcentajeRetencionComprobante}" type="number"
+														class="form-control" id="porcentajeRetencionComprobante"
+														name="porcentajeRetencionComprobante" min="0" max="100"
+														required />
+													<div class="invalid-feedback">
+														Ingresa un valor de porcentaje de retención correcto.
+													</div>
+												</div>
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_retencionComprobante" class="is-required">Retención</label>
+													<input th:field="*{retencionComprobante}" type="number"
+														class="form-control" id="retencionComprobante"
+														name="retencionComprobante" min="0" max="200000000" required />
+													<div class="invalid-feedback">
+														Ingresa una valor de retención válido.
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="form-group col-md-12 col-12">
+													<label for="lb_observacionesComprobante">Observaciones</label>
+													<textarea th:field="*{observacionesComprobante}"
+														class="form-control" id="observacionesComprobante"
+														name="observacionesComprobante" maxlength="255" rows="3" />
+													<div class="invalid-feedback">
+														Ingresa una observación.
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_subTotalComprobante" class="is-required">Subtotal</label>
+													<input th:field="*{subTotalComprobante}" type="number"
+														class="form-control" id="subTotalComprobante"
+														name="subTotalComprobante" min="0" max="200000000" required />
+													<div class="invalid-feedback">
+														Ingresa el valor de subtotal.
+													</div>
+												</div>
+												<div class="form-group col-md-6 col-12">
+													<label for="lb_valorNetoComprobante" class="is-required">Valor neto</label>
+													<input th:field="*{valorNetoComprobante}" type="number"
+														class="form-control" id="valorNetoComprobante"
+														name="valorNetoComprobante" min="0" max="200000000" required />
+													<div class="invalid-feedback">
+														Ingresa una valor neto válido.
+													</div>
+												</div>
+											</div>
+
+											<div class="card-footer text-right">
+												<button class="btn btn-primary" type="submit">Guardar</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- Footer -->
+			<footer th:replace="optimus/template :: footer"></footer>
+		</div>
+	</div>
+
+	<!-- Modals -->
+	<nav th:insert="optimus/template :: modals"></nav>
+
+	<!-- Scripts -->
+	<nav th:insert="optimus/template :: scripts"></nav>
+</body>
+
+</html>
