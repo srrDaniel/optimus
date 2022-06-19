@@ -11,7 +11,6 @@
 	<groupId>com.oygingenieria</groupId>
 	<artifactId>optimus</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
 	<name>optimus</name>
 	<description>Optimus Soft project for Spring Boot</description>
 	<properties>
