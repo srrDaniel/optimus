@@ -115,7 +115,7 @@ public class ComprobanteImp implements IComprobante
 		Comprobante comprobanteModificar = comprobanteDao.findById(comprobante.getIdComprobante()).orElse(null);
 		if(comprobanteModificar != null) 
 		{			
-			var estado = (comprobanteModificar.getEstadoComprobante().equals("Activo")) ? "Inactivo":"Activo";
+			String estado = (comprobanteModificar.getEstadoComprobante().equals("Activo")) ? "Inactivo":"Activo";
 			cambiarEstadoCascada(comprobanteModificar);
 			comprobanteModificar.setEstadoComprobante(estado);
 		}		
@@ -128,7 +128,7 @@ public class ComprobanteImp implements IComprobante
 					
 					Empleado empleado = empleadoDao.findById(asignacion.getEmpleado().getIdEmpleado()).orElse(null);
 					if(empleado.getEstadoEmpleado().equals("Activo")) {
-						var estado = (asignacion.getEstado().equals("Activo")) ? "Inactivo" : "Activo";
+						String estado = (asignacion.getEstado().equals("Activo")) ? "Inactivo" : "Activo";
 						asignacion.setEstado(estado);
 					}				
 				}
@@ -141,7 +141,7 @@ public class ComprobanteImp implements IComprobante
 					 
 					Proveedor proveedor = proveedorDao.findById(asignacion.getProveedor().getIdProveedor()).orElse(null);
 					if(proveedor.getEstadoProveedor().equals("Activo")) {
-						var estado = (asignacion.getEstado().equals("Activo")) ? "Inactivo" : "Activo";
+						String estado = (asignacion.getEstado().equals("Activo")) ? "Inactivo" : "Activo";
 						asignacion.setEstado(estado);
 					}
 				}

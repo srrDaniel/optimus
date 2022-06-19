@@ -75,7 +75,7 @@ public class CmpEmpleadoImp implements ICmpEmpleado
 				}
 			}
 			if(empleado.getEstadoEmpleado().equals("Activo")){
-				var estado = (comprobanteEmpleadoModificar.getEstado().equals("Activo")) ? "Inactivo":"Activo";
+				String estado = (comprobanteEmpleadoModificar.getEstado().equals("Activo")) ? "Inactivo":"Activo";
 				comprobanteEmpleadoModificar.setEstado(estado);
 			}
 			else {

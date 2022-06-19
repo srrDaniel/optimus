@@ -75,7 +75,7 @@ public class CmpProveedorImp implements ICmpProveedor
 				}
 			}			
 			if(proveedor.getEstadoProveedor().equals("Activo")) {
-				var estado = (comprobanteProveedorModificar.getEstado().equals("Activo")) ? "Inactivo":"Activo";
+				String estado = (comprobanteProveedorModificar.getEstado().equals("Activo")) ? "Inactivo":"Activo";
 				comprobanteProveedorModificar.setEstado(estado);		
 			}else {
 				throw new ApiUnprocessableEntity("No se puede cambiar el estado de la asignaci�n del comprobante porque el proveedor est� inactivo.");

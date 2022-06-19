@@ -103,7 +103,7 @@ public class EmpleadoImp implements IEmpleado
 				throw new ApiUnprocessableEntity("No puedes cambiar el estado del empleado porque tiene herramientas prestadas.");
 			}
 			else {
-				var estado = (empleadoModificar.getEstadoEmpleado().equals("Activo")) ? "Inactivo":"Activo";
+				String estado = (empleadoModificar.getEstadoEmpleado().equals("Activo")) ? "Inactivo":"Activo";
 				cambiarEstadoCascada(empleadoModificar);
 				empleadoModificar.setEstadoEmpleado(estado);		
 			}			
@@ -119,12 +119,12 @@ public class EmpleadoImp implements IEmpleado
 			if(asignacion.getEmpleado().getIdEmpleado().equals(empleado.getIdEmpleado())) {
 				
 				if(empleado.getEstadoEmpleado().equals(asignacion.getEstado())) {
-					var estado = (asignacion.getEstado().equals("Activo")) ? "Inactivo" : "Activo";
+					String estado = (asignacion.getEstado().equals("Activo")) ? "Inactivo" : "Activo";
 					asignacion.setEstado(estado);
 				}
 				Comprobante comprobante = comprobanteDao.findById(asignacion.getComprobante().getIdComprobante()).orElse(null);
 				if(comprobante.getEstadoComprobante().equals(empleado.getEstadoEmpleado())) {
-					var estado2 = (comprobante.getEstadoComprobante().equals("Activo")) ? "Inactivo" : "Activo";
+					String estado2 = (comprobante.getEstadoComprobante().equals("Activo")) ? "Inactivo" : "Activo";
 					comprobante.setEstadoComprobante(estado2);
 				}
 			}

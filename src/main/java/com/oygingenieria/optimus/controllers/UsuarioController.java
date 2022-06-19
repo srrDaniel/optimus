@@ -64,7 +64,7 @@ public class UsuarioController
 
 	@PostMapping("/guardar")
 	public String guardar(@Valid Usuario usuario, Errors errores, RedirectAttributes redirectAttrs) {
-		var str = "";
+		String str = "";
 		try {
 			iUsuario.guardarUsuario(usuario);
 			redirectAttrs.addFlashAttribute("mensaje", "Se ha guardado correctamente el usuario")
@@ -79,7 +79,7 @@ public class UsuarioController
 	
 	@PostMapping("/actualizar")
 	public String actualizar(@Valid Usuario usuario, Errors errores, RedirectAttributes redirectAttrs) {
-		var str = "";
+		String str = "";
 		try {
 			iUsuario.actualizarUsuario(usuario);
 			redirectAttrs.addFlashAttribute("mensaje", "Se ha actualizado correctamente el usuario")

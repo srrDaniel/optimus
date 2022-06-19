@@ -94,7 +94,7 @@ public class ProveedorController {
 	
 	@PostMapping("/actualizar")
 	public String actualizar(@Valid Proveedor proveedor, Errors errores, RedirectAttributes redirectAttrs) {
-		var str = "";
+		String str = "";
 		try {
 			iProveedor.actualizarProveedor(proveedor);
 			redirectAttrs.addFlashAttribute("mensaje", "Se ha actualizado correctamente el proveedor")

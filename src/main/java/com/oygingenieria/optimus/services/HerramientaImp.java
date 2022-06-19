@@ -87,7 +87,7 @@ public class HerramientaImp implements IHerramienta
 		Herramienta herramientaModificar = herramientaDao.findById(herramienta.getIdHerramienta()).orElse(null);
 		if(herramientaModificar != null) 
 		{			
-			var estado = (herramientaModificar.getEstadoHerramienta().equals("Activo")) ? "Inactivo":"Activo";
+			String estado = (herramientaModificar.getEstadoHerramienta().equals("Activo")) ? "Inactivo":"Activo";
 			herramientaModificar.setEstadoHerramienta(estado);		
 		}		
 	}
