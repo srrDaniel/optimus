@@ -16,6 +16,7 @@ public class Fechas
 
 	public static Long calculateDaysBetweenDates(Date date1, Date date2) throws ParseException 
 	{
+		//Comentario
 		return Math.abs(DAYS.between(devolverFecha(date1).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(),
 									devolverFecha(date2).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()));
 	}
